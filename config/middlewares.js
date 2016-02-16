@@ -1,3 +1,3 @@
 module.exports.middlewares = {
-    '*': ['logMatchingUrls']
+    'api': ['ApiLogMiddleware']
 };

@@ -27,8 +27,10 @@ core.registerAPIRoutes(app,'../../src/controllers');
 core.registerCustomRoutes(app,'../../src/controllers');
   
 //TODO api middlewares bug
-//core.registerMiddlewares(app,'../../src/middlewares');
-  
+
+core.registerMiddlewares(app,'../../src/middlewares');
+
+
 var server = app.listen(3000, function () {
   var port = server.address().port;
   console.log('Example app listening at port %s', port);

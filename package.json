@@ -1,5 +1,5 @@
 {
-  "name": "simple api server",
+  "name": "simpleapiserver",
   "version": "1.0.0",
   "description": "express based app for reacting quick api",
   "main": "server.js",
@@ -47,6 +47,7 @@
   }
 }
 
+        
         
         
         

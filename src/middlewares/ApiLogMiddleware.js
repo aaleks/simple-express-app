@@ -3,7 +3,7 @@
 //app.use(logMatchingUrls(/\.css$/i));
 
 module.exports = function (req, res, next) {
-        console.log('req url');
+        console.log('req url api ');
         next();
 
     };

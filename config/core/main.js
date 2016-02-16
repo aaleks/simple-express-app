@@ -13,6 +13,8 @@ module.exports = {
         //use the router api 
         var routerapi = express.Router();
         var dir = requireDir(pathRoutes);
+        console.log("registerAPIRoutes DIR  " + JSON.stringify(dir) + "pathRoutes " + pathRoutes);
+
 
         //list every controllers in folder
         Object.keys(dir).forEach(function (item) {
@@ -71,39 +73,41 @@ module.exports = {
                     break;
             }
         })
-        /*
-         registerMiddlewares: function (app, pathRoutes) {
-         var dir = requireDir(pathRoutes);
+    },
 
-         console.log(JSON.stringify(middlewares))
-         Object.keys(middlewares).forEach(function (item) {
-         var currentKey = item;
-         console.log("crt " + currentKey);
+    registerMiddlewares: function (app, pathRoutes) {
 
-         //every keys in middelware define
-         if(currentKey=="*"){
-         middlewares[currentKey].forEach(function(entry) {
-         console.log("dir " + JSON.stringify(dir));
+        var dir = requireDir(pathRoutes);
+        console.log("registerAPIRoutes DIR  " + JSON.stringify(dir) + "pathRoutes " + pathRoutes);
 
-         console.log("entr " + JSON.stringify(dir[entry]));
+        console.log("MIDD VAl " + JSON.stringify(middlewares));
 
-         app.use('/custom',dir[entry] );
+        console.log("registerMiddleware " + JSON.stringify(dir));
+        console.log("registerMiddlewarepathRoutes  " + dir);
 
-         });
-         Object.keys(currentKey).forEach(function (item) {
-         app.use(item, dir[item]);
-         }
+        Object.keys(middlewares).forEach(function (item) {
+            var currentKey = item;
+            console.log("crt " + currentKey);
 
-         var current = dir[item];
-         Object.keys(dir).forEach(function (item) {
-         console.log("key" + item);
-         app.use('/' + item, dir[item]);
-         });
+            //every key s in middelware define
+            if (currentKey == "*") {
+                middlewares[currentKey].forEach(function (entry) {
+                    console.log("dir " + JSON.stringify(dir));
+                    console.log("entr value " + entry);
 
-         });
-         },
-         */
+                    console.log("entr" + dir[entry]);
 
+                    app.use("*", require('../../src/middlewares/' + entry))
+                });
+            } else {
+
+                middlewares[currentKey].forEach(function (item) {
+                    console.log("key" + item);
+                    console.log("apiLog  " + currentKey);
+                    app.use('/' + currentKey,  require('../../src/middlewares/' + item));
+                });
+
+            }
+        })
     }
 }
-
